@@ -56,8 +56,65 @@ def cargar_socios():
 
     return socios
 
+def listar_libros(libros):
+    print("\n--- LISTADO DE TODOS LOS LIBROS ---")
+
+    for libro in libros:
+        print("------------------------------")
+        libro.mostrar_informacion()
+
+
+def listar_libros_disponibles(libros):
+    print("\n--- LIBROS DISPONIBLES ---")
+
+    for libro in libros:
+        if libro.esta_disponible():
+            print("------------------------------")
+            libro.mostrar_informacion()
+
+
+
+def buscar_libros(libros):
+    titulo_buscar = input("\nIntroduce el título: ").lower()
+
+    encontrados = False
+
+    for libro in libros:
+        if titulo_buscar in libro.titulo.lower():
+            print("------------------------------")
+            libro.mostrar_informacion()
+            encontrados = True
+
+    if encontrados == False:
+        print("No se han encontrado libros con ese título.")
+
+
+def mostrar_menu():
+    print("\n========== BIBLIOTECA ==========")
+    print("1. Listar todos los libros")
+    print("2. Listar libros disponibles")
+    print("3. Buscar libros por título")
+    print("4. Prestar libro a un socio")
+    print("5. Devolver libro")
+    print("6. Mostrar socios con préstamos")
+    print("7. Añadir libros y socios")
+    print("8. Guardar y salir")
+    print("================================")
+
 libros = cargar_libros()
 socios = cargar_socios()
 
-print(f"Total de libros: {len(libros)}")
-print(f"Total de socios: {len(socios)}")
+opcion = ""
+
+while opcion != "8":
+    mostrar_menu()
+    opcion = input("Selecciona una opción: ")
+
+    if opcion == "1":
+        listar_libros(libros)
+
+    elif opcion == "2":
+        listar_libros_disponibles(libros)
+
+    elif opcion == "3":
+        buscar_libros(libros)
