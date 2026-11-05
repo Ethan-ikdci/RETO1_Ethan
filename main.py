@@ -1,6 +1,7 @@
 from modelo.libro import Libro
 from modelo.socio import Socio
 
+#Funcion para cargar los libros del txt
 def cargar_libros():
     libros = []
 
@@ -27,10 +28,9 @@ def cargar_libros():
 
             libros.append(libro)
 
-    print("Se han cargado los libros correctamente.")
-
     return libros
 
+#Funcion para cargar los socios del txt
 def cargar_socios():
     socios = []
 
@@ -72,8 +72,6 @@ def listar_libros_disponibles(libros):
             print("------------------------------")
             libro.mostrar_informacion()
 
-
-
 def buscar_libros(libros):
     titulo_buscar = input("\nIntroduce el título: ").lower()
 
@@ -88,6 +86,45 @@ def buscar_libros(libros):
     if encontrados == False:
         print("No se han encontrado libros con ese título.")
 
+#Funcion para hacer el prestamo del libro
+def prestar_libro(libros, socios):
+    print("\n--- PRESTAR LIBRO ---")
+
+    codigo_libro = int(input("Introduce el codigo del libro: "))
+
+    libro_encontrado = None
+
+    for libro in libros:
+        if libro.codigo == codigo_libro:
+            libro_encontrado= libro
+    #Comprobamos si el libro existe
+    if libro_encontrado is None:
+        print("No existe ningun libro con ese código")
+    #Comprobamos si el libro no lo tiene alguien ya
+    elif not libro_encontrado.esta_disponible():
+        print("El libro ya está prestado.")
+
+    else:
+        codigo_socio = int(input("Introduce el codigo del socio: "))
+
+        socio_encontrado = None
+
+        for socio in socios:
+            if socio.codigo_socio == codigo_socio:
+                socio_encontrado = socio
+        #Comprobamos si el socio existe
+        if socio_encontrado is None:
+            print("No existe ningún socio con ese código")
+        #Comprobamo si el socio tiene algun libro 
+        elif socio_encontrado.tiene_libro():
+            print("Este socio ya tiene un libro prestado.")
+
+        else:
+            #Asociamos el libro con el socio
+            libro_encontrado.codigo_socio = codigo_socio
+            socio_encontrado.codigo_libro = codigo_libro
+
+            print("Préstamo realizado correctamente.")
 
 def mostrar_menu():
     print("\n========== BIBLIOTECA ==========")
@@ -118,3 +155,6 @@ while opcion != "8":
 
     elif opcion == "3":
         buscar_libros(libros)
+
+    elif opcion == "4":
+        prestar_libro(libros, socios)
