@@ -145,3 +145,45 @@ class GestionBiblioteca:
                 socio_encontrado.codigo_libro = codigo_libro
 
                 print("Prestamo realizado correctamente.")
+
+        # Funcion para devolver un libro
+    def devolver_libro(self):
+        print("\n--- DEVOLVER LIBRO ---")
+
+        codigo_socio = int(
+            input("Introduce el codigo del socio: ")
+        )
+
+        socio_encontrado = None
+
+        # Buscamos al socio
+        for socio in self.socios:
+            if socio.codigo_socio == codigo_socio:
+                socio_encontrado = socio
+
+        # Comprobamos si el socio existe
+        if socio_encontrado is None:
+            print("No existe ningun socio con ese codigo.")
+
+        # Comprobamos si tiene un libro prestado
+        elif not socio_encontrado.tiene_libro():
+            print("Este socio no tiene ningun libro prestado.")
+
+        else:
+            codigo_libro = socio_encontrado.codigo_libro
+            libro_encontrado = None
+
+            # Buscamos el libro prestado
+            for libro in self.libros:
+                if libro.codigo == codigo_libro:
+                    libro_encontrado = libro
+
+            if libro_encontrado is None:
+                print("No se encuentra el libro asociado al socio.")
+
+            else:
+                # Liberamos el libro y al socio
+                libro_encontrado.codigo_socio = None
+                socio_encontrado.codigo_libro = None
+
+                print("Libro devuelto correctamente.")

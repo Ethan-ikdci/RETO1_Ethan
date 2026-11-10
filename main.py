@@ -31,3 +31,6 @@ while opcion != "8":
 
     elif opcion == "4":
         biblioteca.prestar_libro()
+
+    elif opcion == "5":
+        biblioteca.devolver_libro()
