@@ -187,3 +187,24 @@ class GestionBiblioteca:
                 socio_encontrado.codigo_libro = None
 
                 print("Libro devuelto correctamente.")
+
+    # Funcion para mostrar los socios que tienen libros prestados
+    def mostrar_socios_con_prestamos(self):
+        print("\n--- SOCIOS CON LIBROS PRESTADOS ---")
+
+        encontrados = False
+
+        for socio in self.socios:
+            if socio.tiene_libro():
+                print("------------------------------")
+                socio.mostrar_informacion()
+
+                for libro in self.libros:
+                    if libro.codigo == socio.codigo_libro:
+                        print("Informacion del libro:")
+                        libro.mostrar_informacion()
+
+                encontrados = True
+
+        if encontrados == False:
+            print("No hay socios con libros prestados.")

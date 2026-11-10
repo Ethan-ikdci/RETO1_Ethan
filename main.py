@@ -34,3 +34,6 @@ while opcion != "8":
 
     elif opcion == "5":
         biblioteca.devolver_libro()
+
+    elif opcion == "6":
+        biblioteca.mostrar_socios_con_prestamos()
