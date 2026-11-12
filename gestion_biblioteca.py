@@ -283,3 +283,42 @@ class GestionBiblioteca:
             else:
                 print("Opcion no valida.")
 
+    # Funcion para guardar los libros en el txt
+    def guardar_libros(self):
+        with open("libros.txt", "w", encoding="utf-8") as archivo:
+            for libro in self.libros:
+                codigo_socio = libro.codigo_socio
+
+                if codigo_socio is None:
+                    codigo_socio = "None"
+
+                linea = (
+                    f"{libro.codigo};{libro.titulo};{libro.autor};"
+                    f"{libro.anio};{libro.categoria};{codigo_socio}\n"
+                )
+
+                archivo.write(linea)
+
+    # Funcion para guardar los socios en el txt
+    def guardar_socios(self):
+        with open("socios.txt", "w", encoding="utf-8") as archivo:
+            for socio in self.socios:
+                codigo_libro = socio.codigo_libro
+
+                if codigo_libro is None:
+                    codigo_libro = "None"
+
+                linea = (
+                    f"{socio.codigo_socio};{socio.nombre};"
+                    f"{socio.email};{codigo_libro}\n"
+                )
+
+                archivo.write(linea)
+
+        # Funcion para guardar todos los datos
+    def guardar_datos(self):
+        self.guardar_libros()
+        self.guardar_socios()
+
+        print("Datos guardados correctamente.")
+

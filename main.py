@@ -40,3 +40,9 @@ while opcion != "8":
         
     elif opcion == "7":
         biblioteca.anadir_datos()
+
+    elif opcion == "8":
+        biblioteca.guardar_datos()
+        print("Saliendo del programa...")
+    else:
+        print("Opcion no valida.")
