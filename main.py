@@ -21,13 +21,13 @@ while opcion != "8":
     opcion = input("Selecciona una opción: ")
 
     if opcion == "1":
-        biblioteca.listar_libros()
+        biblioteca.gestion_libros.listar_libros()
 
     elif opcion == "2":
-        biblioteca.listar_libros_disponibles()
+        biblioteca.gestion_libros.listar_libros_disponibles()
 
     elif opcion == "3":
-        biblioteca.buscar_libros()
+        biblioteca.gestion_libros.buscar_libros()
 
     elif opcion == "4":
         biblioteca.prestar_libro()
@@ -36,7 +36,7 @@ while opcion != "8":
         biblioteca.devolver_libro()
 
     elif opcion == "6":
-        biblioteca.mostrar_socios_con_prestamos()
+        biblioteca.gestion_socios.mostrar_socios_con_prestamos()
         
     elif opcion == "7":
         biblioteca.anadir_datos()

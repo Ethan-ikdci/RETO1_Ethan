@@ -1,17 +1,23 @@
 
+from gestion_libros import GestionLibros
+from gestion_socios import GestionSocios
 from modelo.libro import Libro
 from modelo.socio import Socio
 
 from datetime import datetime
+
 from errores.biblioteca_exception import BibliotecaException
 
 
 class GestionBiblioteca:
-    
+        
     def __init__(self):
         self.libros = self.cargar_libros()
         self.socios = self.cargar_socios()
 
+        self.gestion_libros = GestionLibros(self.libros)
+        self.gestion_socios = GestionSocios(self.socios, self.libros)
+        
         print(f"Se han cargado {len(self.libros)} libros.")
         print(f"Se han cargado {len(self.socios)} socios.")
 
@@ -70,43 +76,8 @@ class GestionBiblioteca:
                 socios.append(socio)
 
         return socios
-
-    # Funcion para listar todos los libros
-    def listar_libros(self):
-        print("\n--- LISTADO DE TODOS LOS LIBROS ---")
-
-        for libro in self.libros:
-            print("------------------------------")
-            libro.mostrar_informacion()
-
-    # Funcion para listar los libros disponibles
-    def listar_libros_disponibles(self):
-        print("\n--- LIBROS DISPONIBLES ---")
-
-        for libro in self.libros:
-            if libro.esta_disponible():
-                print("------------------------------")
-                libro.mostrar_informacion()
-
-    # Funcion para buscar libros por titulo
-    def buscar_libros(self):
-        titulo_buscar = input(
-            "\nIntroduce el titulo: "
-        ).lower()
-
-        encontrados = False
-
-        for libro in self.libros:
-            if titulo_buscar in libro.titulo.lower():
-                print("------------------------------")
-                libro.mostrar_informacion()
-                encontrados = True
-
-        if encontrados == False:
-            print("No se han encontrado libros con ese titulo.")
-
    
-# Funcion para hacer el prestamo del libro
+    # Funcion para hacer el prestamo del libro
     def prestar_libro(self):
         print("\n--- PRESTAR LIBRO ---")
 
@@ -161,8 +132,6 @@ class GestionBiblioteca:
 
         except ValueError:
             print("Error: debes introducir codigos numericos.")
-
-
         
     def devolver_libro(self):
         print("\n--- DEVOLVER LIBRO ---")
@@ -216,114 +185,6 @@ class GestionBiblioteca:
         except ValueError:
             print("Error: debes introducir un codigo numerico.")
 
-
-
-    
-    
-    # Funcion para mostrar los socios que tienen libros prestados
-    def mostrar_socios_con_prestamos(self):
-        print("\n--- SOCIOS CON LIBROS PRESTADOS ---")
-
-        encontrados = False
-
-        for socio in self.socios:
-            if socio.tiene_libro():
-                print("------------------------------")
-                socio.mostrar_informacion()
-
-                for libro in self.libros:
-                    if libro.codigo == socio.codigo_libro:
-                        print("Informacion del libro:")
-                        libro.mostrar_informacion()
-
-                encontrados = True
-
-        if encontrados == False:
-            print("No hay socios con libros prestados.")
-
-
-    
-    def anadir_libro(self):
-        print("\n--- AÑADIR LIBRO ---")
-
-        try:
-            codigo = int(input("Introduce el codigo del libro: "))
-
-            libro_existente = False
-
-            for libro in self.libros:
-                if libro.codigo == codigo:
-                    libro_existente = True
-
-            if libro_existente:
-                raise BibliotecaException(
-                    "Ya existe un libro con ese codigo.", 8
-                )
-            else:
-                titulo = input("Introduce el titulo: ")
-                autor = input("Introduce el autor: ")
-                anio = int(input("Introduce el año: "))
-                categoria = input("Introduce la categoria: ")
-
-                libro = Libro(codigo, titulo, autor, anio, categoria)
-                self.libros.append(libro)
-
-                self.registrar_evento(
-                    "ALTA_LIBRO",
-                    f"Codigo: {codigo}, Titulo: {titulo}"
-                )
-
-                print("Libro añadido correctamente.")
-
-        except BibliotecaException as error:
-            print(f"Error: {error}")
-            print(f"Codigo de error: {error.codigo_error}")
-
-        except ValueError:
-            print("Error: el codigo y el año deben ser numericos.")
-
-
-        
-    def anadir_socio(self):
-        print("\n--- AÑADIR SOCIO ---")
-
-        try:
-            codigo_socio = int(
-                input("Introduce el codigo del socio: ")
-            )
-
-            socio_existente = False
-
-            for socio in self.socios:
-                if socio.codigo_socio == codigo_socio:
-                    socio_existente = True
-
-            if socio_existente:
-                raise BibliotecaException(
-                    "Ya existe un socio con ese codigo.", 9
-                )
-            else:
-                nombre = input("Introduce el nombre: ")
-                email = input("Introduce el email: ")
-
-                socio = Socio(codigo_socio, nombre, email)
-                self.socios.append(socio)
-
-                self.registrar_evento(
-                    "ALTA_SOCIO",
-                    f"Codigo: {codigo_socio}, Nombre: {nombre}"
-                )
-
-                print("Socio añadido correctamente.")
-
-        except BibliotecaException as error:
-            print(f"Error: {error}")
-            print(f"Codigo de error: {error.codigo_error}")
-
-        except ValueError:
-            print("Error: debes introducir un codigo numerico.")
-
-
     # Funcion para gestionar las altas
     def anadir_datos(self):
         opcion = ""
@@ -337,9 +198,9 @@ class GestionBiblioteca:
             opcion = input("Selecciona una opcion: ")
 
             if opcion == "1":
-                self.anadir_libro()
+                self.gestion_libros.anadir_libro(self.registrar_evento)
             elif opcion == "2":
-                self.anadir_socio()
+                self.gestion_socios.anadir_socio(self.registrar_evento)
             elif opcion == "3":
                 print("Volviendo al menu principal.")
             else:
@@ -388,7 +249,6 @@ class GestionBiblioteca:
         )
 
         print("Datos guardados correctamente.")
-
 
     # Funcion para registrar eventos en el log
     def registrar_evento(self, nombre_evento, detalles):
