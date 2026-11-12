@@ -99,3 +99,4 @@
 99;Patria;Fernando Aramburu;2016;Novela;None
 100;Los renglones torcidos de Dios;Torcuato Luca de Tena;1979;Misterio;None
 101;Geronimo Stilton y sus aventuras;Ethan Zubicoa;2016;Aventuras;None
+102;Harry Potter y la piedra filosofal;JK. Rowling;2012;Fantasia;None

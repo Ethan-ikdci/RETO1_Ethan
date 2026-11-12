@@ -2,6 +2,9 @@
 from modelo.libro import Libro
 from modelo.socio import Socio
 
+from datetime import datetime
+from errores.biblioteca_exception import BibliotecaException
+
 
 class GestionBiblioteca:
 
@@ -98,53 +101,63 @@ class GestionBiblioteca:
         if encontrados == False:
             print("No se han encontrado libros con ese titulo.")
 
-    # Funcion para hacer el prestamo del libro
+   
+# Funcion para hacer el prestamo del libro
     def prestar_libro(self):
         print("\n--- PRESTAR LIBRO ---")
 
-        codigo_libro = int(
-            input("Introduce el codigo del libro: ")
-        )
+        try:
+            codigo_libro = int(input("Introduce el codigo del libro: "))
+            codigo_socio = int(input("Introduce el codigo del socio: "))
 
-        libro_encontrado = None
-
-        for libro in self.libros:
-            if libro.codigo == codigo_libro:
-                libro_encontrado = libro
-
-        # Comprobamos si el libro existe
-        if libro_encontrado is None:
-            print("No existe ningun libro con ese codigo.")
-
-        # Comprobamos si el libro ya esta prestado
-        elif not libro_encontrado.esta_disponible():
-            print("El libro ya esta prestado.")
-
-        else:
-            codigo_socio = int(
-                input("Introduce el codigo del socio: ")
-            )
-
+            libro_encontrado = None
             socio_encontrado = None
+
+            for libro in self.libros:
+                if libro.codigo == codigo_libro:
+                    libro_encontrado = libro
 
             for socio in self.socios:
                 if socio.codigo_socio == codigo_socio:
                     socio_encontrado = socio
 
-            # Comprobamos si el socio existe
+            if libro_encontrado is None:
+                raise BibliotecaException(
+                    "No existe ningun libro con ese codigo.", 1
+                )
+
             if socio_encontrado is None:
-                print("No existe ningun socio con ese codigo.")
+                raise BibliotecaException(
+                    "No existe ningun socio con ese codigo.", 2
+                )
 
-            # Comprobamos si el socio ya tiene un libro
-            elif socio_encontrado.tiene_libro():
-                print("Este socio ya tiene un libro prestado.")
+            if not libro_encontrado.esta_disponible():
+                raise BibliotecaException(
+                    "El libro ya esta prestado.", 3
+                )   
 
-            else:
-                # Asociamos el libro con el socio
-                libro_encontrado.codigo_socio = codigo_socio
-                socio_encontrado.codigo_libro = codigo_libro
+            if socio_encontrado.tiene_libro():
+                raise BibliotecaException(
+                    "El socio ya tiene un libro prestado.", 4
+                )
 
-                print("Prestamo realizado correctamente.")
+            libro_encontrado.codigo_socio = codigo_socio
+            socio_encontrado.codigo_libro = codigo_libro
+
+            self.registrar_evento(
+                "PRESTAMO",
+                f"Libro: {codigo_libro}, Socio: {codigo_socio}"
+            )
+
+            print("Prestamo realizado correctamente.")
+
+        except BibliotecaException as error:
+            print(f"Error: {error}")
+            print(f"Codigo de error: {error.codigo_error}")
+
+        except ValueError:
+            print("Error: debes introducir codigos numericos.")
+
 
         # Funcion para devolver un libro
     def devolver_libro(self):
@@ -182,11 +195,19 @@ class GestionBiblioteca:
                 print("No se encuentra el libro asociado al socio.")
 
             else:
-                # Liberamos el libro y al socio
+                
+                codigo_libro = socio_encontrado.codigo_libro
+
                 libro_encontrado.codigo_socio = None
                 socio_encontrado.codigo_libro = None
 
+                self.registrar_evento(
+                    "DEVOLUCION",
+                    f"Libro: {codigo_libro}, Socio: {codigo_socio}"
+                )
+
                 print("Libro devuelto correctamente.")
+
 
     
     
@@ -236,6 +257,11 @@ class GestionBiblioteca:
 
             self.libros.append(libro)
 
+            self.registrar_evento(
+                "ALTA_LIBRO",
+                f"Codigo: {codigo}, Titulo: {titulo}"
+            )
+
             print("Libro añadido correctamente.")
 
         # Funcion para añadir un socio
@@ -259,6 +285,11 @@ class GestionBiblioteca:
             socio = Socio(codigo_socio, nombre, email)
 
             self.socios.append(socio)
+
+            self.registrar_evento(
+                "ALTA_SOCIO",
+                f"Codigo: {codigo_socio}, Nombre: {nombre}"
+            )
 
             print("Socio añadido correctamente.")
 
@@ -320,5 +351,19 @@ class GestionBiblioteca:
         self.guardar_libros()
         self.guardar_socios()
 
+        self.registrar_evento(
+            "GUARDADO",
+            "Libros y socios guardados correctamente"
+        )
+
         print("Datos guardados correctamente.")
 
+
+    # Funcion para registrar eventos en el log
+    def registrar_evento(self, nombre_evento, detalles):
+        fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        with open("log.txt", "a", encoding="utf-8") as archivo:
+            archivo.write(
+                f"[{fecha}][{nombre_evento}][{detalles}]\n"
+            )
