@@ -37,3 +37,6 @@ while opcion != "8":
 
     elif opcion == "6":
         biblioteca.mostrar_socios_con_prestamos()
+        
+    elif opcion == "7":
+        biblioteca.anadir_datos()

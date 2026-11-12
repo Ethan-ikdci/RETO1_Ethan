@@ -188,6 +188,8 @@ class GestionBiblioteca:
 
                 print("Libro devuelto correctamente.")
 
+    
+    
     # Funcion para mostrar los socios que tienen libros prestados
     def mostrar_socios_con_prestamos(self):
         print("\n--- SOCIOS CON LIBROS PRESTADOS ---")
@@ -208,3 +210,76 @@ class GestionBiblioteca:
 
         if encontrados == False:
             print("No hay socios con libros prestados.")
+
+
+    # Funcion para añadir un libro
+    def anadir_libro(self):
+        print("\n--- AÑADIR LIBRO ---")
+
+        codigo = int(input("Introduce el codigo del libro: "))
+
+        libro_existente = False
+
+        for libro in self.libros:
+            if libro.codigo == codigo:
+                libro_existente = True
+
+        if libro_existente:
+            print("Ya existe un libro con ese codigo.")
+        else:
+            titulo = input("Introduce el titulo: ")
+            autor = input("Introduce el autor: ")
+            anio = int(input("Introduce el año: "))
+            categoria = input("Introduce la categoria: ")
+
+            libro = Libro(codigo, titulo, autor, anio, categoria)
+
+            self.libros.append(libro)
+
+            print("Libro añadido correctamente.")
+
+        # Funcion para añadir un socio
+    def anadir_socio(self):
+        print("\n--- AÑADIR SOCIO ---")
+
+        codigo_socio = int(input("Introduce el codigo del socio: "))
+
+        socio_existente = False
+
+        for socio in self.socios:
+            if socio.codigo_socio == codigo_socio:
+                socio_existente = True
+
+        if socio_existente:
+            print("Ya existe un socio con ese codigo.")
+        else:
+            nombre = input("Introduce el nombre: ")
+            email = input("Introduce el email: ")
+
+            socio = Socio(codigo_socio, nombre, email)
+
+            self.socios.append(socio)
+
+            print("Socio añadido correctamente.")
+
+    # Funcion para gestionar las altas
+    def anadir_datos(self):
+        opcion = ""
+
+        while opcion != "3":
+            print("\n--- AÑADIR DATOS ---")
+            print("1. Añadir libro")
+            print("2. Añadir socio")
+            print("3. Volver al menu principal")
+
+            opcion = input("Selecciona una opcion: ")
+
+            if opcion == "1":
+                self.anadir_libro()
+            elif opcion == "2":
+                self.anadir_socio()
+            elif opcion == "3":
+                print("Volviendo al menu principal.")
+            else:
+                print("Opcion no valida.")
+
