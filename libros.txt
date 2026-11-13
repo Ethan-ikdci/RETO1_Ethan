@@ -1,0 +1,103 @@
+1;El principito;Antoine de Saint-Exupéry;1943;Novela;None
+2;1984;George Orwell;1949;Distopía;None
+3;Dune;Frank Herbert;1965;Ciencia ficción;1
+4;Cien años de soledad;Gabriel García Márquez;1967;Realismo mágico;None
+5;La sombra del viento;Carlos Ruiz Zafón;2001;Misterio;None
+6;Don Quijote de la Mancha;Miguel de Cervantes;1605;Clásico;None
+7;Orgullo y prejuicio;Jane Austen;1813;Romance;2
+8;Crimen y castigo;Fiódor Dostoyevski;1866;Clásico;None
+9;Fahrenheit 451;Ray Bradbury;1953;Distopía;None
+10;El nombre de la rosa;Umberto Eco;1980;Misterio;None
+11;La ciudad y los perros;Mario Vargas Llosa;1963;Novela;None
+12;Los pilares de la Tierra;Ken Follett;1989;Histórica;3
+13;El hobbit;J. R. R. Tolkien;1937;Fantasía;None
+14;El señor de los anillos;J. R. R. Tolkien;1954;Fantasía;None
+15;Harry Potter y la piedra filosofal;J. K. Rowling;1997;Fantasía;None
+16;Harry Potter y la cámara secreta;J. K. Rowling;1998;Fantasía;None
+17;Harry Potter y el prisionero de Azkaban;J. K. Rowling;1999;Fantasía;None
+18;El código Da Vinci;Dan Brown;2003;Thriller;4
+19;Ángeles y demonios;Dan Brown;2000;Thriller;None
+20;La isla del tesoro;Robert Louis Stevenson;1883;Aventura;None
+21;Moby Dick;Herman Melville;1851;Aventura;None
+22;Viaje al centro de la Tierra;Julio Verne;1864;Aventura;None
+23;Veinte mil leguas de viaje submarino;Julio Verne;1870;Aventura;None
+24;La vuelta al mundo en ochenta días;Julio Verne;1872;Aventura;5
+25;Drácula;Bram Stoker;1897;Terror;None
+26;Frankenstein;Mary Shelley;1818;Terror;None
+27;El retrato de Dorian Gray;Oscar Wilde;1890;Clásico;None
+28;Rebelión en la granja;George Orwell;1945;Sátira;None
+29;El guardián entre el centeno;J. D. Salinger;1951;Novela;None
+30;Matar a un ruiseñor;Harper Lee;1960;Drama;None
+31;El gran Gatsby;F. Scott Fitzgerald;1925;Clásico;None
+32;Los miserables;Victor Hugo;1862;Histórica;None
+33;La metamorfosis;Franz Kafka;1915;Clásico;None
+34;El extranjero;Albert Camus;1942;Filosófica;None
+35;Rayuela;Julio Cortázar;1963;Novela;None
+36;Pedro Páramo;Juan Rulfo;1955;Realismo mágico;None
+37;Como agua para chocolate;Laura Esquivel;1989;Romance;None
+38;La casa de los espíritus;Isabel Allende;1982;Realismo mágico;None
+39;El amor en los tiempos del cólera;Gabriel García Márquez;1985;Romance;None
+40;Ensayo sobre la ceguera;José Saramago;1995;Ficción;None
+41;La tregua;Mario Benedetti;1960;Romance;None
+42;El túnel;Ernesto Sabato;1948;Psicológica;None
+43;La colmena;Camilo José Cela;1951;Novela;None
+44;Nada;Carmen Laforet;1945;Novela;None
+45;Fortunata y Jacinta;Benito Pérez Galdós;1887;Realista;None
+46;La Regenta;Leopoldo Alas Clarín;1884;Realista;None
+47;Platero y yo;Juan Ramón Jiménez;1914;Poesía;None
+48;Campos de Castilla;Antonio Machado;1912;Poesía;None
+49;Romancero gitano;Federico García Lorca;1928;Poesía;None
+50;La casa de Bernarda Alba;Federico García Lorca;1936;Teatro;None
+51;Hamlet;William Shakespeare;1603;Teatro;None
+52;Romeo y Julieta;William Shakespeare;1597;Romance;None
+53;Macbeth;William Shakespeare;1606;Teatro;None
+54;La divina comedia;Dante Alighieri;1321;Clásico;None
+55;La Ilíada;Homero;-750;Épica;None
+56;La Odisea;Homero;-700;Épica;None
+57;El arte de la guerra;Sun Tzu;-500;Ensayo;None
+58;Sapiens;Yuval Noah Harari;2011;Historia;None
+59;Homo Deus;Yuval Noah Harari;2015;Historia;None
+60;Breves respuestas a las grandes preguntas;Stephen Hawking;2018;Ciencia;None
+61;Una breve historia del tiempo;Stephen Hawking;1988;Ciencia;None
+62;El gen egoísta;Richard Dawkins;1976;Ciencia;None
+63;Cosmos;Carl Sagan;1980;Ciencia;None
+64;El mundo y sus demonios;Carl Sagan;1995;Ciencia;None
+65;Pensar rápido, pensar despacio;Daniel Kahneman;2011;Psicología;None
+66;El hombre en busca de sentido;Viktor Frankl;1946;Psicología;None
+67;Inteligencia emocional;Daniel Goleman;1995;Psicología;None
+68;Hábitos atómicos;James Clear;2018;Desarrollo personal;None
+69;El poder de los hábitos;Charles Duhigg;2012;Desarrollo personal;None
+70;Cómo ganar amigos e influir sobre las personas;Dale Carnegie;1936;Desarrollo personal;None
+71;El alquimista;Paulo Coelho;1988;Ficción;None
+72;Veronika decide morir;Paulo Coelho;1998;Ficción;None
+73;La ladrona de libros;Markus Zusak;2005;Histórica;None
+74;El niño con el pijama de rayas;John Boyne;2006;Drama;None
+75;Cometas en el cielo;Khaled Hosseini;2003;Drama;None
+76;Mil soles espléndidos;Khaled Hosseini;2007;Drama;None
+77;El psicoanalista;John Katzenbach;2002;Thriller;None
+78;La chica del tren;Paula Hawkins;2015;Thriller;None
+79;Perdida;Gillian Flynn;2012;Thriller;None
+80;Asesinato en el Orient Express;Agatha Christie;1934;Misterio;None
+81;Diez negritos;Agatha Christie;1939;Misterio;None
+82;El perro de los Baskerville;Arthur Conan Doyle;1902;Misterio;None
+83;Estudio en escarlata;Arthur Conan Doyle;1887;Misterio;None
+84;El silencio de los corderos;Thomas Harris;1988;Thriller;None
+85;Neuromante;William Gibson;1984;Ciencia ficción;None
+86;Fundación;Isaac Asimov;1951;Ciencia ficción;None
+87;Yo, robot;Isaac Asimov;1950;Ciencia ficción;None
+88;El juego de Ender;Orson Scott Card;1985;Ciencia ficción;None
+89;Ready Player One;Ernest Cline;2011;Ciencia ficción;None
+90;La historia interminable;Michael Ende;1979;Fantasía;None
+91;Momo;Michael Ende;1973;Fantasía;None
+92;Coraline;Neil Gaiman;2002;Fantasía;None
+93;American Gods;Neil Gaiman;2001;Fantasía;None
+94;El color de la magia;Terry Pratchett;1983;Fantasía;None
+95;Buenos presagios;Terry Pratchett y Neil Gaiman;1990;Fantasía;None
+96;Persépolis;Marjane Satrapi;2000;Cómic;None
+97;Arrugas;Paco Roca;2007;Cómic;None
+98;El infinito en un junco;Irene Vallejo;2019;Ensayo;None
+99;Patria;Fernando Aramburu;2016;Novela;None
+100;Los renglones torcidos de Dios;Torcuato Luca de Tena;1979;Misterio;None
+101;Geronimo Stilton y sus aventuras;Ethan Zubicoa;2016;Aventuras;None
+102;Harry Potter y la piedra filosofal;JK. Rowling;2012;Fantasia;None
+103;fdsafaf;fsafa;1900;fasfa;None
